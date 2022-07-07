@@ -1,0 +1,76 @@
+{% extends 'layout.html'%}
+{% block content %}
+<div class="container" style="margin-top: 5vh">
+    <!-- side navigation-->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    API Endpoints
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" name="init"
+                    onclick="show(name), hide(name)">/rest/v1/calendar/init</a>
+                <a href="#" class="list-group-item list-group-item-action" name="redirect"
+                    onclick="show(name), hide(name)">/rest/v1/calendar/redirect</a>
+            </div>
+        </div>
+        <!-- body for main content of each endpoint-->
+        <div class="col-md-9">
+            <div class="card" id="init" style="display: block">
+                <div class="card-body">
+                    <h5 class="card-title">/rest/v1/calendar/init</h5>
+                    <p class="card-text">
+                        This endpoint is used to get the authorization code from google.
+                        The authorization code is used to get the access token.
+                        The access token is used to get the events from google calendar.
+                        And redirected to get list of events
+                    </p>
+                    <br>
+                    <br>
+                    <a href="{% url 'api:register' %}" class="btn btn-primary">Try it</a>
+                </div>
+            </div>
+            <div class="card" id="redirect" style="display: none">
+                <div class="card-body">
+                    <h5 class="card-title">/rest/v1/calendar/redirect</h5>
+                    <p class="card-text">
+                        This endpoint is used to get the access token from google.
+                        The access token is used to get the events from google calendar.
+                    </p>
+                    <br>
+                    <br>
+                    <p>Sample Response:</p>
+                    <code>
+                        {
+                            date: event
+                        }
+                    </code>
+                    <br>
+                    <br>
+                    <a href="{% url 'api:register' %}" class="btn btn-primary">Try it</a>
+
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+    function show(name) {
+        var x = document.getElementById(name);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        }
+    }
+    function hide(name) {
+        // function to hide the divs other the one clicked
+        var x = document.getElementById(name);
+        const arr = ['init', 'redirect'];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] != name) {
+                var y = document.getElementById(arr[i]);
+                y.style.display = "none";
+            }
+        }
+
+    }
+</script>
+{% endblock %}

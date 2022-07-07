@@ -1,0 +1,13 @@
+{% extends 'layout.html'%}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Google Calendar API</h1>
+        <p class="lead">This is a simple application to get the events from your Google Calendar.</p>
+        <hr class="my-4">
+        <!--button to go to docs-->
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'api:docs'%}" role="button">Go to docs</a>
+        </p>
+
+    </div>
+{% endblock %}
